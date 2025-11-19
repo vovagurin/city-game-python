@@ -10,8 +10,7 @@ from images import *
 #координаты, размер
 #(252, 415, 390, 200)
 
-
-#cub = pygame.Surface((60, 60))
+#cub = pygame.Surface((150, 125))
 #cub.fill((0, 255, 0))
 
 def obdet():
@@ -143,20 +142,27 @@ def pocas(Y):
     global nV, lvl_komplit, lvl, nL, Fon, F_K
     if lvL[nL]["q"][nV - 1]["an"][Y]["cor"]:
         lvL_komplit[nV - 1] = 1
+        Z_Con_g.play()
     else:
         lvL_komplit[nV - 1] = 0
+        Z_Con_b.play()
     
     if nV > 4:
         if lvL_komplit[0] + lvL_komplit[1] + lvL_komplit[2] + lvL_komplit[3] + lvL_komplit[4] > lvL[nL]["b"]:
             lvL[nL]["b"] = lvL_komplit[0] + lvL_komplit[1] + lvL_komplit[2] + lvL_komplit[3] + lvL_komplit[4]
         if lvL[nL]["g"] == 1:
             lvL[nL]["g"] = 2
+        if lvL_komplit[0] + lvL_komplit[1] + lvL_komplit[2] + lvL_komplit[3] + lvL_komplit[4] == 5:
+            Z_sg.play()
+        else:
+            Z_g.play()
         lvL_komplit[0] = 3
         lvL_komplit[1] = 2
         lvL_komplit[2] = 2
         lvL_komplit[3] = 2
         lvL_komplit[4] = 2
         Fon = F_K
+        nL = 10
         nV = 1
     else:
         lvL_komplit[nV] = 3
@@ -174,7 +180,7 @@ while go:
 
     screen.blit(Fon, (0, 0))
 
-    #screen.blit(cub, (366, 225))
+    #screen.blit(cub, (740, 10))
 
     obdet()
 
@@ -183,6 +189,17 @@ while go:
             screen.blit(K_nocl_p, (0, 0))
         else:
             screen.blit(K_nocl, (0, 0))
+
+
+        if not test_s["nocl"]:
+            if X_K_nocl.collidepoint(m_p):
+                test_s["nocl"] = True
+                Z_nocl_A.play()
+        else:
+            if not X_K_nocl.collidepoint(m_p):
+                test_s["nocl"] = False
+
+
     elif Fon == F_K:
         screen.blit(le[0][le_yp[0]], (0, 0))
         screen.blit(le[1][le_yp[1]], (0, 0))
@@ -191,8 +208,8 @@ while go:
         screen.blit(le[4][le_yp[4]], (0, 0))
 
 
-        if lvL[9]["g"] == 2 and U_yp[9] == 4: screen.blit(U_lev[lvL[9]["g"]][U_yp[9]][lvL[9]["b"]], (-190, -500))
-        else: screen.blit(U_lev[lvL[9]["g"]][U_yp[9]], (-190, -500))
+        if lvL[9]["g"] == 2 and U_yp[9] == 4: screen.blit(U_dop[lvL[9]["g"]][U_yp[9]][lvL[9]["b"]], (0, 0))
+        else: screen.blit(U_dop[lvL[9]["g"]][U_yp[9]], (0, 0))
             
         if lvL[6]["g"] == 2 and U_yp[6] == 4: screen.blit(U_lev[lvL[6]["g"]][U_yp[6]][lvL[6]["b"]], (50, -460))
         else: screen.blit(U_lev[lvL[6]["g"]][U_yp[6]], (50, -460))
@@ -206,10 +223,8 @@ while go:
         if lvL[5]["g"] == 2 and U_yp[5] == 4: screen.blit(U_pra[lvL[5]["g"]][U_yp[5]][lvL[5]["b"]], (45, -210))
         else: screen.blit(U_pra[lvL[5]["g"]][U_yp[5]], (45, -210))
             
-        if lvL[1]["g"] == 2 and U_yp[1] == 4: 
-            screen.blit(U_lev[lvL[1]["g"]][U_yp[1]][lvL[1]["b"]], (119, -157))
-        else: 
-            screen.blit(U_lev[lvL[1]["g"]][U_yp[1]], (119, -157))
+        if lvL[1]["g"] == 2 and U_yp[1] == 4: screen.blit(U_lev[lvL[1]["g"]][U_yp[1]][lvL[1]["b"]], (119, -157))
+        else: screen.blit(U_lev[lvL[1]["g"]][U_yp[1]], (119, -157))
     
         if lvL[4]["g"] == 2 and U_yp[4] == 4: screen.blit(U_pra[lvL[4]["g"]][U_yp[4]][lvL[4]["b"]], (60, 0))
         else: screen.blit(U_pra[lvL[4]["g"]][U_yp[4]], (60, 0))
@@ -224,7 +239,7 @@ while go:
         else: screen.blit(U_lev[lvL[0]["g"]][U_yp[0]], (60, 50))
             
         if U_yp[9] == 4:
-            screen.blit(lvL[9]["n"], (430, -25))
+            screen.blit(lvL[9]["n"], (440, 100))
         if U_yp[6] == 4:
             screen.blit(lvL[6]["n"], (675, 15))
         if U_yp[8] == 4:
@@ -242,9 +257,119 @@ while go:
         if U_yp[3] == 4:
             screen.blit(lvL[3]["n"], (525, 460))
         if U_yp[0] == 4:
-            screen.blit(lvL[0]["n"][0], (670, 510))
-            screen.blit(lvL[0]["n"][1], (670, 535))
+            screen.blit(lvL[0]["n"][0], (680, 510))
+            screen.blit(lvL[0]["n"][1], (680, 535))
 
+
+        if not test_s["L"]["1"]:
+            if (X_L_1_p.collidepoint(m_p) and U_yp[0] == 4) or (X_L_1.collidepoint(m_p) and U_yp[0] < 4):
+                test_s["L"]["1"] = True
+                if lvL[0]["g"] == 0:
+                    Z_U_A0.play()
+                else:
+                    Z_U_A1.play()
+        else:
+            if not ((X_L_1_p.collidepoint(m_p) and U_yp[0] == 4) or (X_L_1.collidepoint(m_p) and U_yp[0] < 4)):
+                test_s["L"]["1"] = False
+
+        if not test_s["L"]["2"]:
+            if (X_L_2_p.collidepoint(m_p) and U_yp[1] == 4) or (X_L_2.collidepoint(m_p) and U_yp[1] < 4):
+                test_s["L"]["2"] = True
+                if lvL[1]["g"] == 0:
+                    Z_U_A0.play()
+                else:
+                    Z_U_A1.play()
+        else:
+            if not ((X_L_2_p.collidepoint(m_p) and U_yp[1] == 4) or (X_L_2.collidepoint(m_p) and U_yp[1] < 4)):
+                test_s["L"]["2"] = False
+
+        if not test_s["L"]["3"]:
+            if (X_L_3_p.collidepoint(m_p) and U_yp[2] == 4) or (X_L_3.collidepoint(m_p) and U_yp[2] < 4):
+                test_s["L"]["3"] = True
+                if lvL[2]["g"] == 0:
+                    Z_U_A0.play()
+                else:
+                    Z_U_A1.play()
+        else:
+            if not ((X_L_3_p.collidepoint(m_p) and U_yp[2] == 4) or (X_L_3.collidepoint(m_p) and U_yp[2] < 4)):
+                test_s["L"]["3"] = False
+
+        if not test_s["L"]["4"]:
+            if (X_L_4_p.collidepoint(m_p) and U_yp[3] == 4) or (X_L_4.collidepoint(m_p) and U_yp[3] < 4):
+                test_s["L"]["4"] = True
+                if lvL[3]["g"] == 0:
+                    Z_U_A0.play()
+                else:
+                    Z_U_A1.play()
+        else:
+            if not ((X_L_4_p.collidepoint(m_p) and U_yp[3] == 4) or (X_L_4.collidepoint(m_p) and U_yp[3] < 4)):
+                test_s["L"]["4"] = False
+
+        if not test_s["L"]["5"]:
+            if (X_L_5_p.collidepoint(m_p) and U_yp[4] == 4) or (X_L_5.collidepoint(m_p) and U_yp[4] < 4):
+                test_s["L"]["5"] = True
+                if lvL[4]["g"] == 0:
+                    Z_U_A0.play()
+                else:
+                    Z_U_A1.play()
+        else:
+            if not ((X_L_5_p.collidepoint(m_p) and U_yp[4] == 4) or (X_L_5.collidepoint(m_p) and U_yp[4] < 4)):
+                test_s["L"]["5"] = False
+
+        if not test_s["L"]["6"]:
+            if (X_L_6_p.collidepoint(m_p) and U_yp[5] == 4) or (X_L_6.collidepoint(m_p) and U_yp[5] < 4):
+                test_s["L"]["6"] = True
+                if lvL[5]["g"] == 0:
+                    Z_U_A0.play()
+                else:
+                    Z_U_A1.play()
+        else:
+            if not ((X_L_6_p.collidepoint(m_p) and U_yp[5] == 4) or (X_L_6.collidepoint(m_p) and U_yp[5] < 4)):
+                test_s["L"]["6"] = False
+
+        if not test_s["L"]["7"]:
+            if (X_L_7_p.collidepoint(m_p) and U_yp[6] == 4) or (X_L_7.collidepoint(m_p) and U_yp[6] < 4):
+                test_s["L"]["7"] = True
+                if lvL[6]["g"] == 0:
+                    Z_U_A0.play()
+                else:
+                    Z_U_A1.play()
+        else:
+            if not ((X_L_7_p.collidepoint(m_p) and U_yp[6] == 4) or (X_L_7.collidepoint(m_p) and U_yp[6] < 4)):
+                test_s["L"]["7"] = False
+
+        if not test_s["L"]["8"]:
+            if (X_L_8_p.collidepoint(m_p) and U_yp[7] == 4) or (X_L_8.collidepoint(m_p) and U_yp[7] < 4):
+                test_s["L"]["8"] = True
+                if lvL[7]["g"] == 0:
+                    Z_U_A0.play()
+                else:
+                    Z_U_A1.play()
+        else:
+            if not ((X_L_8_p.collidepoint(m_p) and U_yp[7] == 4) or (X_L_8.collidepoint(m_p) and U_yp[7] < 4)):
+                test_s["L"]["8"] = False
+
+        if not test_s["L"]["9"]:
+            if (X_L_9_p.collidepoint(m_p) and U_yp[8] == 4) or (X_L_9.collidepoint(m_p) and U_yp[8] < 4):
+                test_s["L"]["9"] = True
+                if lvL[8]["g"] == 0:
+                    Z_U_A0.play()
+                else:
+                    Z_U_A1.play()
+        else:
+            if not ((X_L_9_p.collidepoint(m_p) and U_yp[8] == 4) or (X_L_9.collidepoint(m_p) and U_yp[8] < 4)):
+                test_s["L"]["9"] = False
+
+        if not test_s["L"]["10"]:
+            if (X_L_10_p.collidepoint(m_p) and U_yp[9] == 4) or (X_L_10.collidepoint(m_p) and U_yp[9] < 4):
+                test_s["L"]["10"] = True
+                if lvL[9]["g"] == 0:
+                    Z_U_A0.play()
+                else:
+                    Z_U_A1.play()
+        else:
+            if not ((X_L_10_p.collidepoint(m_p) and U_yp[9] == 4) or (X_L_10.collidepoint(m_p) and U_yp[9] < 4)):
+                test_s["L"]["10"] = False
 
 
 
@@ -324,89 +449,148 @@ while go:
         screen.blit(Ben[lvL_komplit[3]], (189, 0))
         screen.blit(Ben[lvL_komplit[4]], (252, 0))
 
-        screen.blit(lvL[nL]["q"][nV - 1]["t"], (90, 550))
+        if (nL == 1 and  (nV == 3 or nV == 4)) or (nL == 4 and  nV == 3) or nL == 5 or (nL == 6 and  (nV == 2 or nV == 3 or nV == 4)) or (nL == 7 and  (nV == 2 or nV == 3 or nV == 4)) or (nL == 8 and  (nV == 1 or nV == 2 or nV == 4)) or (nL == 9 and  nV == 4):
+
+            screen.blit(lvL[nL]["q"][nV - 1]["t"][0], (30, 525))
+            screen.blit(lvL[nL]["q"][nV - 1]["t"][1], (30, 575))
+
+        else:
+            screen.blit(lvL[nL]["q"][nV - 1]["t"], (30, 550))
 
         if X_K_Krest.collidepoint(m_p):
-            screen.blit(buk_p, (90, 550))
+            screen.blit(buk_p, (0, 0))
         else:
-            screen.blit(buk, (90, 550))
+            screen.blit(buk, (0, 0))
+
+
+
+        if not test_s["Con"]:
+            if X_Con_a.collidepoint(m_p) or X_Con_b.collidepoint(m_p) or X_Con_c.collidepoint(m_p) or X_Con_d.collidepoint(m_p):
+                test_s["Con"] = True
+                Z_Con.play()
+        else:
+            if not (X_Con_a.collidepoint(m_p) or X_Con_b.collidepoint(m_p) or X_Con_c.collidepoint(m_p) or X_Con_d.collidepoint(m_p)):
+                test_s["Con"] = False
+
+        if not test_s["Krest"]:
+            if X_K_Krest.collidepoint(m_p):
+                test_s["Krest"] = True
+                Z_Krest_A.play()
+        else:
+            if not X_K_Krest.collidepoint(m_p):
+                test_s["Krest"] = False
 
 
     if Fon == F_L_P[0] or Fon == F_L_P[1] or Fon == F_L_P[2] or Fon == F_L_P[3] or Fon == F_L_P[4] or Fon == F_L_P[5] or Fon == F_L_P[6] or Fon == F_L_P[7] or Fon == F_L_P[8] or Fon == F_L_P[9]:
         if X_K_Krest.collidepoint(m_p):
-            screen.blit(Krest_p, (90, 550))
+            screen.blit(Krest_p, (0, 0))
         else:
-            screen.blit(Krest, (90, 550))
+            screen.blit(Krest, (0, 0))
+
+        if not test_s["Krest"]:
+            if X_K_Krest.collidepoint(m_p):
+                test_s["Krest"] = True
+                Z_Krest_A.play()
+        else:
+            if not X_K_Krest.collidepoint(m_p):
+                test_s["Krest"] = False
         
+        
+    #if not (nL_m == nL):
+    #    M[nL_m][0].stop()
+    #    nL_m = nL
+    #if not pygame.mixer.music.get_busy():
+
 
     
-        
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             go = False
         elif event.type == pygame.MOUSEBUTTONDOWN and X_K_nocl.collidepoint(m_p) and Fon == F_N:
             Fon = F_K
+            nL = 10
+            Z_nocl_n.play()
         elif event.type == pygame.MOUSEBUTTONDOWN and X_L_1_k.collidepoint(m_p) and U_yp[0] == 4 and Fon == F_K and lvL[0]["g"] > 0:
             Log_Fon = Fon
             Fon = F_L_P[0]
+            Z_Krest_n.play()
         elif event.type == pygame.MOUSEBUTTONDOWN and X_L_2_k.collidepoint(m_p) and U_yp[1] == 4 and Fon == F_K and lvL[1]["g"] > 0:
             Log_Fon = Fon
             Fon = F_L_P[1]
+            Z_Krest_n.play()
         elif event.type == pygame.MOUSEBUTTONDOWN and X_L_3_k.collidepoint(m_p) and U_yp[2] == 4 and Fon == F_K and lvL[2]["g"] > 0:
             Log_Fon = Fon
             Fon = F_L_P[2]
+            Z_Krest_n.play()
         elif event.type == pygame.MOUSEBUTTONDOWN and X_L_4_k.collidepoint(m_p) and U_yp[3] == 4 and Fon == F_K and lvL[3]["g"] > 0:
             Log_Fon = Fon
             Fon = F_L_P[3]
+            Z_Krest_n.play()
         elif event.type == pygame.MOUSEBUTTONDOWN and X_L_5_k.collidepoint(m_p) and U_yp[4] == 4 and Fon == F_K and lvL[4]["g"] > 0:
             Log_Fon = Fon
             Fon = F_L_P[4]
+            Z_Krest_n.play()
         elif event.type == pygame.MOUSEBUTTONDOWN and X_L_6_k.collidepoint(m_p) and U_yp[5] == 4 and Fon == F_K and lvL[5]["g"] > 0:
             Log_Fon = Fon
             Fon = F_L_P[5]
+            Z_Krest_n.play()
         elif event.type == pygame.MOUSEBUTTONDOWN and X_L_7_k.collidepoint(m_p) and U_yp[6] == 4 and Fon == F_K and lvL[6]["g"] > 0:
             Log_Fon = Fon
             Fon = F_L_P[6]
+            Z_Krest_n.play()
         elif event.type == pygame.MOUSEBUTTONDOWN and X_L_8_k.collidepoint(m_p) and U_yp[7] == 4 and Fon == F_K and lvL[7]["g"] > 0:
             Log_Fon = Fon
             Fon = F_L_P[7]
+            Z_Krest_n.play()
         elif event.type == pygame.MOUSEBUTTONDOWN and X_L_9_k.collidepoint(m_p) and U_yp[8] == 4 and Fon == F_K and lvL[8]["g"] > 0:
             Log_Fon = Fon
             Fon = F_L_P[8]
+            Z_Krest_n.play()
         elif event.type == pygame.MOUSEBUTTONDOWN and X_L_10_k.collidepoint(m_p) and U_yp[9] == 4 and Fon == F_K and lvL[9]["g"] > 0:
             Log_Fon = Fon
             Fon = F_L_P[9]
+            Z_Krest_n.play()
         elif event.type == pygame.MOUSEBUTTONDOWN and ((X_L_1_p.collidepoint(m_p) and U_yp[0] == 4) or (X_L_1.collidepoint(m_p) and U_yp[0] < 4)) and Fon == F_K and lvL[0]["g"] > 0:
             Fon = F_L_1
             nL = 0
+            Z_U.play()
         elif event.type == pygame.MOUSEBUTTONDOWN and ((X_L_2_p.collidepoint(m_p) and U_yp[1] == 4) or (X_L_2.collidepoint(m_p) and U_yp[1] < 4)) and Fon == F_K and lvL[1]["g"] > 0:
             Fon = F_L_2
             nL = 1
+            Z_U.play()
         elif event.type == pygame.MOUSEBUTTONDOWN and ((X_L_3_p.collidepoint(m_p) and U_yp[2] == 4) or (X_L_3.collidepoint(m_p) and U_yp[2] < 4)) and Fon == F_K and lvL[2]["g"] > 0:
             Fon = F_L_3
             nL = 2
+            Z_U.play()
         elif event.type == pygame.MOUSEBUTTONDOWN and ((X_L_4_p.collidepoint(m_p) and U_yp[3] == 4) or (X_L_4.collidepoint(m_p) and U_yp[3] < 4)) and Fon == F_K and lvL[3]["g"] > 0:
             Fon = F_L_4
             nL = 3
+            Z_U.play()
         elif event.type == pygame.MOUSEBUTTONDOWN and ((X_L_5_p.collidepoint(m_p) and U_yp[4] == 4) or (X_L_5.collidepoint(m_p) and U_yp[4] < 4)) and Fon == F_K and lvL[4]["g"] > 0:
             Fon = F_L_5
             nL = 4
+            Z_U.play()
         elif event.type == pygame.MOUSEBUTTONDOWN and ((X_L_6_p.collidepoint(m_p) and U_yp[5] == 4) or (X_L_6.collidepoint(m_p) and U_yp[5] < 4)) and Fon == F_K and lvL[5]["g"] > 0:
             Fon = F_L_6
             nL = 5
+            Z_U.play()
         elif event.type == pygame.MOUSEBUTTONDOWN and ((X_L_7_p.collidepoint(m_p) and U_yp[6] == 4) or (X_L_7.collidepoint(m_p) and U_yp[6] < 4)) and Fon == F_K and lvL[6]["g"] > 0:
             Fon = F_L_7
             nL = 6
+            Z_U.play()
         elif event.type == pygame.MOUSEBUTTONDOWN and ((X_L_8_p.collidepoint(m_p) and U_yp[7] == 4) or (X_L_8.collidepoint(m_p) and U_yp[7] < 4)) and Fon == F_K and lvL[7]["g"] > 0:
             Fon = F_L_8
             nL = 7
+            Z_U.play()
         elif event.type == pygame.MOUSEBUTTONDOWN and ((X_L_9_p.collidepoint(m_p) and U_yp[8] == 4) or (X_L_9.collidepoint(m_p) and U_yp[8] < 4)) and Fon == F_K and lvL[8]["g"] > 0:
             Fon = F_L_9
             nL = 8
+            Z_U.play()
         elif event.type == pygame.MOUSEBUTTONDOWN and ((X_L_10_p.collidepoint(m_p) and U_yp[9] == 4) or (X_L_10.collidepoint(m_p) and U_yp[9] < 4)) and Fon == F_K and lvL[9]["g"] > 0:
             Fon = F_L_10
             nL = 9
+            Z_U.play()
         elif event.type == pygame.MOUSEBUTTONDOWN and X_Con_a.collidepoint(m_p) and (Fon == F_L_1 or Fon == F_L_2 or Fon == F_L_3 or Fon == F_L_4 or Fon == F_L_5 or Fon == F_L_6 or Fon == F_L_7 or Fon == F_L_8 or Fon == F_L_9 or Fon == F_L_10):
             pocas(0)
         elif event.type == pygame.MOUSEBUTTONDOWN and X_Con_b.collidepoint(m_p) and (Fon == F_L_1 or Fon == F_L_2 or Fon == F_L_3 or Fon == F_L_4 or Fon == F_L_5 or Fon == F_L_6 or Fon == F_L_7 or Fon == F_L_8 or Fon == F_L_9 or Fon == F_L_10):
@@ -418,8 +602,10 @@ while go:
         elif event.type == pygame.MOUSEBUTTONDOWN and X_K_Krest.collidepoint(m_p) and (Fon == F_L_1 or Fon == F_L_2 or Fon == F_L_3 or Fon == F_L_4 or Fon == F_L_5 or Fon == F_L_6 or Fon == F_L_7 or Fon == F_L_8 or Fon == F_L_9 or Fon == F_L_10):
             Log_Fon = Fon
             Fon = F_L_P[nL]
+            Z_Krest_n.play()
         elif event.type == pygame.MOUSEBUTTONDOWN and X_K_Krest.collidepoint(m_p) and (Fon == F_L_P[0] or Fon == F_L_P[1] or Fon == F_L_P[2] or Fon == F_L_P[3] or Fon == F_L_P[4] or Fon == F_L_P[5] or Fon == F_L_P[6] or Fon == F_L_P[7] or Fon == F_L_P[8] or Fon == F_L_P[9]):
             Fon = Log_Fon
+            Z_Krest_n.play()
 
     clock.tick(30)
     pygame.display.update()
