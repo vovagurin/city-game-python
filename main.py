@@ -10,7 +10,10 @@ from images import *
 #координаты, размер
 #(252, 415, 390, 200)
 
-#cub = pygame.Surface((150, 125))
+
+
+
+#cub = pygame.Surface((155, 60))
 #cub.fill((0, 255, 0))
 
 def obdet():
@@ -142,20 +145,23 @@ def pocas(Y):
     global nV, lvl_komplit, lvl, nL, Fon, F_K
     if lvL[nL]["q"][nV - 1]["an"][Y]["cor"]:
         lvL_komplit[nV - 1] = 1
-        Z_Con_g.play()
+        if not (nV > 4):
+            Z_Con_g.play()
     else:
         lvL_komplit[nV - 1] = 0
-        Z_Con_b.play()
+        if not (nV > 4):
+            Z_Con_b.play()
     
     if nV > 4:
         if lvL_komplit[0] + lvL_komplit[1] + lvL_komplit[2] + lvL_komplit[3] + lvL_komplit[4] > lvL[nL]["b"]:
             lvL[nL]["b"] = lvL_komplit[0] + lvL_komplit[1] + lvL_komplit[2] + lvL_komplit[3] + lvL_komplit[4]
         if lvL[nL]["g"] == 1:
             lvL[nL]["g"] = 2
-        if lvL_komplit[0] + lvL_komplit[1] + lvL_komplit[2] + lvL_komplit[3] + lvL_komplit[4] == 5:
-            Z_sg.play()
-        else:
-            Z_g.play()
+        #if lvL_komplit[0] + lvL_komplit[1] + lvL_komplit[2] + lvL_komplit[3] + lvL_komplit[4] == 5:
+            #Z_sg.play()
+        #else:
+            #Z_g.play()
+        Z_sg.play()
         lvL_komplit[0] = 3
         lvL_komplit[1] = 2
         lvL_komplit[2] = 2
@@ -180,7 +186,7 @@ while go:
 
     screen.blit(Fon, (0, 0))
 
-    #screen.blit(cub, (740, 10))
+    #screen.blit(cub, (745, 600))
 
     obdet()
 
@@ -198,6 +204,9 @@ while go:
         else:
             if not X_K_nocl.collidepoint(m_p):
                 test_s["nocl"] = False
+        
+        screen.blit(aftor, (0, 0))
+        screen.blit(versi, (0, 50))
 
 
     elif Fon == F_K:
@@ -269,7 +278,7 @@ while go:
                 else:
                     Z_U_A1.play()
         else:
-            if not ((X_L_1_p.collidepoint(m_p) and U_yp[0] == 4) or (X_L_1.collidepoint(m_p) and U_yp[0] < 4)):
+            if not X_L_1_p.collidepoint(m_p):
                 test_s["L"]["1"] = False
 
         if not test_s["L"]["2"]:
@@ -280,7 +289,7 @@ while go:
                 else:
                     Z_U_A1.play()
         else:
-            if not ((X_L_2_p.collidepoint(m_p) and U_yp[1] == 4) or (X_L_2.collidepoint(m_p) and U_yp[1] < 4)):
+            if not X_L_2_p.collidepoint(m_p):
                 test_s["L"]["2"] = False
 
         if not test_s["L"]["3"]:
@@ -291,7 +300,7 @@ while go:
                 else:
                     Z_U_A1.play()
         else:
-            if not ((X_L_3_p.collidepoint(m_p) and U_yp[2] == 4) or (X_L_3.collidepoint(m_p) and U_yp[2] < 4)):
+            if not X_L_3_p.collidepoint(m_p):
                 test_s["L"]["3"] = False
 
         if not test_s["L"]["4"]:
@@ -302,7 +311,7 @@ while go:
                 else:
                     Z_U_A1.play()
         else:
-            if not ((X_L_4_p.collidepoint(m_p) and U_yp[3] == 4) or (X_L_4.collidepoint(m_p) and U_yp[3] < 4)):
+            if not X_L_4_p.collidepoint(m_p):
                 test_s["L"]["4"] = False
 
         if not test_s["L"]["5"]:
@@ -313,7 +322,7 @@ while go:
                 else:
                     Z_U_A1.play()
         else:
-            if not ((X_L_5_p.collidepoint(m_p) and U_yp[4] == 4) or (X_L_5.collidepoint(m_p) and U_yp[4] < 4)):
+            if not X_L_5_p.collidepoint(m_p):
                 test_s["L"]["5"] = False
 
         if not test_s["L"]["6"]:
@@ -324,7 +333,7 @@ while go:
                 else:
                     Z_U_A1.play()
         else:
-            if not ((X_L_6_p.collidepoint(m_p) and U_yp[5] == 4) or (X_L_6.collidepoint(m_p) and U_yp[5] < 4)):
+            if not X_L_6_p.collidepoint(m_p):
                 test_s["L"]["6"] = False
 
         if not test_s["L"]["7"]:
@@ -335,7 +344,7 @@ while go:
                 else:
                     Z_U_A1.play()
         else:
-            if not ((X_L_7_p.collidepoint(m_p) and U_yp[6] == 4) or (X_L_7.collidepoint(m_p) and U_yp[6] < 4)):
+            if not X_L_7_p.collidepoint(m_p):
                 test_s["L"]["7"] = False
 
         if not test_s["L"]["8"]:
@@ -346,7 +355,7 @@ while go:
                 else:
                     Z_U_A1.play()
         else:
-            if not ((X_L_8_p.collidepoint(m_p) and U_yp[7] == 4) or (X_L_8.collidepoint(m_p) and U_yp[7] < 4)):
+            if not X_L_8_p.collidepoint(m_p):
                 test_s["L"]["8"] = False
 
         if not test_s["L"]["9"]:
@@ -357,7 +366,7 @@ while go:
                 else:
                     Z_U_A1.play()
         else:
-            if not ((X_L_9_p.collidepoint(m_p) and U_yp[8] == 4) or (X_L_9.collidepoint(m_p) and U_yp[8] < 4)):
+            if not X_L_9_p.collidepoint(m_p):
                 test_s["L"]["9"] = False
 
         if not test_s["L"]["10"]:
@@ -368,7 +377,7 @@ while go:
                 else:
                     Z_U_A1.play()
         else:
-            if not ((X_L_10_p.collidepoint(m_p) and U_yp[9] == 4) or (X_L_10.collidepoint(m_p) and U_yp[9] < 4)):
+            if not X_L_10_p.collidepoint(m_p):
                 test_s["L"]["10"] = False
 
 
@@ -511,6 +520,9 @@ while go:
             Fon = F_K
             nL = 10
             Z_nocl_n.play()
+        elif event.type == pygame.MOUSEBUTTONDOWN and X_exet_k.collidepoint(m_p) and Fon == F_K:
+            Fon = F_N
+            Z_nocl_n.play()
         elif event.type == pygame.MOUSEBUTTONDOWN and X_L_1_k.collidepoint(m_p) and U_yp[0] == 4 and Fon == F_K and lvL[0]["g"] > 0:
             Log_Fon = Fon
             Fon = F_L_P[0]
@@ -599,6 +611,16 @@ while go:
             pocas(2)
         elif event.type == pygame.MOUSEBUTTONDOWN and X_Con_d.collidepoint(m_p) and (Fon == F_L_1 or Fon == F_L_2 or Fon == F_L_3 or Fon == F_L_4 or Fon == F_L_5 or Fon == F_L_6 or Fon == F_L_7 or Fon == F_L_8 or Fon == F_L_9 or Fon == F_L_10):
             pocas(3)
+        elif event.type == pygame.MOUSEBUTTONDOWN and X_exet_L.collidepoint(m_p) and (Fon == F_L_1 or Fon == F_L_2 or Fon == F_L_3 or Fon == F_L_4 or Fon == F_L_5 or Fon == F_L_6 or Fon == F_L_7 or Fon == F_L_8 or Fon == F_L_9 or Fon == F_L_10):
+            lvL_komplit[0] = 3
+            lvL_komplit[1] = 2
+            lvL_komplit[2] = 2
+            lvL_komplit[3] = 2
+            lvL_komplit[4] = 2
+            Fon = F_K
+            nL = 10
+            nV = 1
+            Z_nocl_n.play()
         elif event.type == pygame.MOUSEBUTTONDOWN and X_K_Krest.collidepoint(m_p) and (Fon == F_L_1 or Fon == F_L_2 or Fon == F_L_3 or Fon == F_L_4 or Fon == F_L_5 or Fon == F_L_6 or Fon == F_L_7 or Fon == F_L_8 or Fon == F_L_9 or Fon == F_L_10):
             Log_Fon = Fon
             Fon = F_L_P[nL]

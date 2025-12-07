@@ -25,16 +25,16 @@ F_L_8 = pygame.image.load(helper.resource_path('Pr/f/F_L_8.png'))
 F_L_9 = pygame.image.load(helper.resource_path('Pr/f/F_L_9.png'))
 F_L_10 = pygame.image.load(helper.resource_path('Pr/f/F_L_10.png'))
 F_L_P = [
-    pygame.image.load(helper.resource_path('Pr/f/F_L_1.png')),
-    pygame.image.load(helper.resource_path('Pr/f/F_L_2.png')),
-    pygame.image.load(helper.resource_path('Pr/f/F_L_3.png')),
-    pygame.image.load(helper.resource_path('Pr/f/F_L_4.png')),
-    pygame.image.load(helper.resource_path('Pr/f/F_L_5.png')),
-    pygame.image.load(helper.resource_path('Pr/f/F_L_6.png')),
-    pygame.image.load(helper.resource_path('Pr/f/F_L_7.png')),
-    pygame.image.load(helper.resource_path('Pr/f/F_L_8.png')),
-    pygame.image.load(helper.resource_path('Pr/f/F_L_9.png')),
-    pygame.image.load(helper.resource_path('Pr/f/F_L_10.png'))
+    pygame.image.load(helper.resource_path('Pr/f/F_L_P_1.png')),
+    pygame.image.load(helper.resource_path('Pr/f/F_L_P_2.png')),
+    pygame.image.load(helper.resource_path('Pr/f/F_L_P_3.png')),
+    pygame.image.load(helper.resource_path('Pr/f/F_L_P_4.png')),
+    pygame.image.load(helper.resource_path('Pr/f/F_L_P_5.png')),
+    pygame.image.load(helper.resource_path('Pr/f/F_L_P_6.png')),
+    pygame.image.load(helper.resource_path('Pr/f/F_L_P_7.png')),
+    pygame.image.load(helper.resource_path('Pr/f/F_L_P_8.png')),
+    pygame.image.load(helper.resource_path('Pr/f/F_L_P_9.png')),
+    pygame.image.load(helper.resource_path('Pr/f/F_L_P_10.png'))
 ]
 
 
@@ -369,7 +369,7 @@ lvL = [
                     font_2.render("под напряжением и не получают удар током?", True, (0, 0, 0))
                 ],
                 "an": [
-                    {"t": pygame.font.Font(shrift, 21).render("обе их лапки касаются одной и той же точки", True, (0, 0, 0)), "cor": True},
+                    {"t": pygame.font.Font(shrift, 23).render("обе их лапки касаются одного проводника", True, (0, 0, 0)), "cor": True},
                     {"t": font_1.render("у них перьевая изоляция", True, (0, 0, 0)), "cor": False},
                     {"t": font_1.render("ток уважает пернатых", True, (0, 0, 0)), "cor": False},
                     {"t": pygame.font.Font(shrift, 23).render("у них от природы есть защитный механизм", True, (0, 0, 0)), "cor": False},
@@ -630,6 +630,8 @@ lvL = [
 ]
 
 
+aftor = font_1.render("создатель: Vovan4ek play", True, (255, 255, 255))
+versi = font_1.render("версия: 2_2", True, (255, 255, 255))
 
 #уровни
 U_lev = [
@@ -845,25 +847,27 @@ X_L_10_k = pygame.Rect(550, 25, 60, 60)
 
 X_K_nocl = pygame.Rect(252, 415, 390, 200)
 X_K_Krest = pygame.Rect(740, 10, 150, 125)
+X_exet_k = pygame.Rect(0, 600, 155, 60)
+X_exet_L = pygame.Rect(745, 600, 155, 60)
 
 #музыка и звуки
 
 Z_nocl_A = pygame.mixer.Sound(helper.resource_path('Pr/s/Z/0.mp3'))
 Z_nocl_n = pygame.mixer.Sound(helper.resource_path('Pr/s/Z/1.mp3'))
 
-Z_g = pygame.mixer.Sound(helper.resource_path('Pr/s/Z/0.mp3'))
-Z_sg = pygame.mixer.Sound(helper.resource_path('Pr/s/Z/0.mp3'))
+#Z_g = pygame.mixer.Sound(helper.resource_path('Pr/s/Z/Z_g.mp3'))
+Z_sg = pygame.mixer.Sound(helper.resource_path('Pr/s/Z/Z_g.mp3'))
 
 Z_U = pygame.mixer.Sound(helper.resource_path('Pr/s/Z/1.mp3'))
-Z_U_A0 = pygame.mixer.Sound(helper.resource_path('Pr/s/Z/0.mp3'))
-Z_U_A1 = pygame.mixer.Sound(helper.resource_path('Pr/s/Z/0.mp3'))
+Z_U_A0 = pygame.mixer.Sound(helper.resource_path('Pr/s/Z/Z_U_A0.mp3'))
+Z_U_A1 = pygame.mixer.Sound(helper.resource_path('Pr/s/Z/Z_U_A1.mp3'))
 
 
 Z_Con = pygame.mixer.Sound(helper.resource_path('Pr/s/Z/0.mp3'))
-Z_Con_g = pygame.mixer.Sound(helper.resource_path('Pr/s/Z/1.mp3'))
-Z_Con_b = pygame.mixer.Sound(helper.resource_path('Pr/s/Z/1.mp3'))
+Z_Con_g = pygame.mixer.Sound(helper.resource_path('Pr/s/Z/Z_Con_g.mp3'))
+Z_Con_b = pygame.mixer.Sound(helper.resource_path('Pr/s/Z/Z_Con_b.mp3'))
 Z_Krest_A = pygame.mixer.Sound(helper.resource_path('Pr/s/Z/0.mp3'))
-Z_Krest_n = pygame.mixer.Sound(helper.resource_path('Pr/s/Z/1.mp3'))
+Z_Krest_n = pygame.mixer.Sound(helper.resource_path('Pr/s/Z/Z_Krest_n.mp3'))
 
 
 

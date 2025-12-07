@@ -1,7 +1,7 @@
+.PHONY: install
 install:
-	python -m venv .venv
-	. .venv/bin/activate
 	pip install -r requirements.txt
 
-gen:
-	python -m PyInstaller --onefile --windowed --add-data "Pr;Pr" main.py
+.PHONY: build
+build:
+	python -m PyInstaller --onefile --windowed --icon=./Pr/logo.ico --add-data "Pr;Pr" main.py
