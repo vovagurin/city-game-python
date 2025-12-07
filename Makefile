@@ -4,4 +4,4 @@ install:
 
 .PHONY: build
 build:
-	python -m PyInstaller --onefile --windowed --icon=./Pr/logo.ico --add-data "Pr;Pr" main.py
+	python -m PyInstaller --onefile --windowed --icon=./Pr/logo.ico --add-data "Pr;Pr" --distpath ./build --name game main.py	
